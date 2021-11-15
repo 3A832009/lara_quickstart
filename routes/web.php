@@ -15,7 +15,9 @@ use  App\Models\Task;
 */
 
 Route::get('/', function () {
-    return view('tasks');
+    $tasks = Task::orderBy('created_at', 'asc')->get();
+    return view('tasks', [ 'tasks' => $tasks ]);
+
 });
 // 增加新的任務
 Route::post('/task', function (Request $request) {
